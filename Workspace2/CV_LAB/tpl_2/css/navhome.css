@@ -1,0 +1,175 @@
+
+.navigation {
+     position: fixed;
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+    bottom: 0;
+     z-index: 9999999;
+     left: 50%;
+     transform: translateX(-50%);
+}
+.menuToggle {
+     width: 65px;
+     height: 65px;
+     background-color: #378c3f;
+     border: 5px solid #fff;
+     opacity: 0.6;
+     border-radius: 50%;
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     z-index: 999999;
+     transform: translateY(-30px);
+
+}
+.menuToggle i {
+     position: absolute;
+     inset: 0;
+}
+.menuToggle i::before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: -23px;
+    width: 20px;
+    background-color: transparent;
+    height: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 3px -6px #fff;
+
+}
+.menuToggle i::after {
+    content: "";
+    position: absolute;
+    top: 22px;
+    right: -23px;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -3px -6px #fff;
+
+}
+.menuToggle::before {
+    content: "+";
+    position: absolute;
+    font-size: 48px;
+    font-weight: 300;
+    color: #fff;
+    transition: 1.5s;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+}
+.menuToggle.active:before {
+     transform: translate(-50% , -50%) rotate(225deg);
+}
+
+.menu {
+     position: absolute;
+     width: 60px;
+     height: 50px;
+     background-color: #ccc;
+     border-radius: 70px;
+     transform: translateY(-30px);
+     transition: transform 0.5s , width 0.5s , height 0.5s;
+     transition-delay: 1s , 0.5s , 0.5s;
+     opacity: 0.5;
+}
+.menuToggle.active ~.menu {
+     width: 600px;
+     height: 70px;
+     transform: translateY(0px);
+     transition-delay: 0s , 0.5s , 0.5s;
+     opacity: 1;
+}
+.menu ul {
+     position: relative;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 100px;
+     line-height: 40px;
+     padding: 0;
+}
+
+.menu ul li {
+     list-style-type: none;
+     cursor: pointer;
+     opacity: 0;
+     visibility: hidden;
+     transition: 0.25s;
+     transition-delay: calc(0s + var(--i));
+     transform: translateY(-30px);
+}
+.menuToggle.active ~.menu ul li {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: calc(0.5s + var(--i));
+    transform: translateY(0px);
+}
+.menu ul li a {
+    display: block;
+    color: #378c3f;
+    text-decoration: none;
+    font-size: 28px;
+}
+.menu ul li:hover a {
+    color: #2cccff;  
+}
+
+/* Responsive navHome */
+
+@media screen and (max-width : 740px) {
+    .navigation {
+        position: fixed;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999999;
+        transform: translateX(-34px);
+        top: -55%;
+   }
+   .menuToggle i::before {
+    display: none;
+    }
+   .menuToggle i::after {
+    display: none;
+    }
+    .menu {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: #ccc;
+        border-radius: 70px;
+        transition: transform 0.5s , width 0.5s , height 0.5s;
+        transition-delay: 1s , 0.5s , 0.5s;
+        opacity: 0.5;
+   }
+   .menuToggle.active ~.menu {
+    width: 520px;
+    height: 70px;
+    transform: translateY(196px) rotateZ(-90deg);
+    transition-delay: 0s , 0.5s , 0.5s; 
+    opacity: 1;
+    }   
+    .menu ul{
+        gap : 80px
+    }
+   .menu ul li:nth-child(3) {
+    display: none;
+   }
+   .menuToggle.active ~.menu ul li {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: calc(0.5s + var(--i));
+    transform: translateY(0px) rotateZ(90deg);
+}
+   
+   
+}
